@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Политика конфиденциальности приложения «Пакет покупок»">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Политика конфиденциальности — Пакет покупок</title>
 <style>
   :root {
@@ -58,12 +60,9 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #ffb45f, #e26214);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 22px;
+    /* Скругление как у иконок iOS */
+    border-radius: 22.5%;
+    display: block;
   }
   .logo-text {
     font-size: 17px;
@@ -126,7 +125,7 @@
 
   <header>
     <span class="logo">
-      <span class="logo-mark">🛍︎</span>
+      <img class="logo-mark" src="icon.png" alt="">
       <span class="logo-text">Пакет покупок</span>
     </span>
     <h1>Политика конфиденциальности</h1>
