@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,10 +118,33 @@
     font-size: 13px;
     text-align: center;
   }
+  /* Язык: ?lang=… или язык браузера; без JS — русский. */
+  html[data-lang="ru"] .lang-en, html[data-lang="en"] .lang-ru { display: none !important; }
+  .lang-switch { display: flex; justify-content: flex-end; gap: 14px; font-size: 14px; margin-bottom: 8px; }
+  .lang-switch a { color: var(--text-secondary); }
+  html[data-lang="ru"] .lang-switch a[data-lang="ru"],
+  html[data-lang="en"] .lang-switch a[data-lang="en"] { color: var(--accent); font-weight: 600; }
 </style>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search).get('lang');
+    var langs = navigator.languages || [navigator.language || 'ru'];
+    var browserRu = langs.some(function (l) { return /^(ru|uk|be|kk)/i.test(l); });
+    var lang = q === 'en' || q === 'ru' ? q : (browserRu ? 'ru' : 'en');
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.lang = lang;
+    if (lang === 'en') document.title = 'Privacy Policy — Paket';
+  })();
+</script>
 </head>
 <body>
 <div class="container">
+  <nav class="lang-switch" aria-label="Language">
+    <a href="?lang=ru" data-lang="ru">Русский</a>
+    <a href="?lang=en" data-lang="en">English</a>
+  </nav>
+
+<div lang="ru" class="lang-ru">
 
   <header>
     <span class="logo">
@@ -197,8 +220,87 @@
   <h2>Контакт</h2>
   <p>По вопросам конфиденциальности: <a href="mailto:yana.k84@icloud.com">yana.k84@icloud.com</a></p>
 
+</div>
+
+<div lang="en" class="lang-en">
+  <header>
+    <span class="logo">
+      <img class="logo-mark" src="icon.png" alt="">
+      <span class="logo-text">Paket</span>
+    </span>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective September 25, 2026</p>
+  </header>
+
+  <div class="card">
+    <strong>In short:</strong> Paket has no servers of its own, collects no data, shares nothing with third parties and uses no analytics or ads. All storage and syncing go through your personal iCloud account.
+  </div>
+
+  <h2>What data is stored</h2>
+  <p>The app only works with data you enter yourself:</p>
+  <ul>
+    <li>Shopping lists, items, amounts and notes.</li>
+    <li>Your custom categories, their colors and icons.</li>
+    <li>Purchase history — to suggest things you have bought before.</li>
+    <li>App settings (theme, sorting, “keep screen on”).</li>
+  </ul>
+  <p>No sign-up is needed: the app doesn’t know your name, email or phone number.</p>
+
+  <h2>Where data is stored</h2>
+  <ul>
+    <li><strong>On your device</strong> — the main storage in an App Group shared by the app and its widget.</li>
+    <li><strong>In your personal iCloud</strong> — to sync between your devices (iPhone, iPad, Apple Watch). The app uses Apple’s CloudKit; your data lives in the private database of your Apple ID and is not accessible to the developer.</li>
+  </ul>
+
+  <h2>Shared lists</h2>
+  <p>When you share a list, the app uses <strong>CloudKit Sharing</strong>:</p>
+  <ul>
+    <li>You create an invitation link through the standard iOS dialog and choose who to send it to.</li>
+    <li>Invited people can see and change that list: add items and check off purchases.</li>
+    <li>You can revoke access at any time: open the list → participants icon → sharing options.</li>
+    <li>Everything goes through Apple iCloud only; the developer has no access to it.</li>
+  </ul>
+
+  <h2>Notifications</h2>
+  <ul>
+    <li><strong>Silent push from CloudKit</strong> tells the app that a shared list has changed. The notification text (“Added: milk”) is created on your device after the push arrives.</li>
+    <li>Notifications are shown only if you allow them.</li>
+  </ul>
+  <p>There are no marketing or third-party push notifications.</p>
+
+  <h2>Siri, widget and Apple Watch</h2>
+  <p>Siri commands, the Home Screen widget and the Apple Watch app work with the same data on your devices and in your iCloud. Nothing else is sent anywhere.</p>
+
+  <h2>What we don’t do</h2>
+  <ul>
+    <li>We don’t use third-party analytics SDKs (Firebase, Amplitude, etc.).</li>
+    <li>We don’t track user behavior.</li>
+    <li>We don’t show ads or share data with ad networks.</li>
+    <li>We don’t ask for your location, contacts, photos or microphone.</li>
+    <li>We don’t create accounts on our servers — there are none.</li>
+  </ul>
+
+  <h2>Your rights</h2>
+  <p>Since your data is stored on your devices and in your iCloud, you are fully in control:</p>
+  <ul>
+    <li>Deleting a list in the app deletes it on all your devices.</li>
+    <li>Deleting the app removes local data.</li>
+    <li>Manage your iCloud data in iOS Settings → Apple ID → iCloud → Manage Storage → Paket.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The app is suitable for all ages and collects no data, including children’s data.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>Significant changes will be reflected in the date at the top of this page and mentioned in the app update notes.</p>
+
+  <h2>Contact</h2>
+  <p>Privacy questions: <a href="mailto:yana.k84@icloud.com">yana.k84@icloud.com</a></p>
+
+</div>
+
   <footer>
-    © 2026 Пакет покупок · <a href="https://apps.apple.com/ru/app/id6815950582">App Store</a>
+    © 2026 <span class="lang-ru">Пакет покупок</span><span class="lang-en">Paket</span> · <a href="https://apps.apple.com/app/id6815950582">App Store</a>
   </footer>
 </div>
 </body>
